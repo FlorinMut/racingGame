@@ -1,8 +1,8 @@
 package org.fasttrackit;
 
-public class Car {
+public class Car extends AutoVehicle {
 
-    String name;
+    /**String name;
     String color;
     int doorCount;
     double mileage;
@@ -10,7 +10,7 @@ public class Car {
     Engine engine; /** poate sa ii zica altfel */
 
 
-
+int doorCount;
 
 
 

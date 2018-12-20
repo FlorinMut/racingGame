@@ -1,5 +1,7 @@
 package org.fasttrackit;
 
+import java.time.LocalDateTime;
+
 /**
  * Hello world!
  */
@@ -12,11 +14,14 @@ public class App {
         car.mileage = 7.5;
         car.running = true;
 
+        double carTraveledDistance = car.accelerate(100,2);
+
         /** metoda 1 pt a adauga si motor */
 
         Engine engine = new Engine();
         engine.manufacturer = "Renault";
         engine.capacity = 1500;
+        engine.expiryDate = LocalDateTime.now().plusYears(10);
 
         car.engine = engine; /** motorul care l-am creat il atribuim masinii noastre. Daca nu faecm asta, motorul exista, dar nu e folosit*/
 
