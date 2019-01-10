@@ -39,7 +39,16 @@ public class Vehicle {
         this.mileage = mileage;
     }
 
-    protected double accelerate(double speed, double durationInHours) { //semnatura metodei cum se numeste si ce returneaza, parametrii sunt tip de data si denumire/
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "name='" + name + '\'' +
+                ", color='" + color + '\'' +
+                ", mileage=" + mileage +
+                '}';
+    }
+
+    public double accelerate(double speed, double durationInHours) { //semnatura metodei cum se numeste si ce returneaza, parametrii sunt tip de data si denumire/
 
         System.out.println(name + "acceletaed with" + speed + "km/h" + durationInHours + "hours.");
 

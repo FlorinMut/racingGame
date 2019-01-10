@@ -1,5 +1,7 @@
 package org.fasttrackit;
 
+import org.fasttrackit.cheater.UFO;
+
 import java.time.LocalDateTime;
 
 /**
@@ -20,7 +22,9 @@ public class App {
         car.setMileage (7.5);
         car.running = true;
 
-        System.out.println(car.getName());
+        System.out.println(car);
+
+     //   System.out.println(car.getName());
 
         double carTraveledDistance = car.accelerate(100,2);
 
@@ -57,6 +61,12 @@ new AutoVehicle(new Engine());
 // example of invoking overloaded methods //
         vehicle1.accelerate(34.12);
         vehicle2.accelerate(130,0.8);
+
+        new UFO().accelerate(130,0.8);
+
+        Vehicle ufo = new UFO();
+        ufo.accelerate(200,2);
+
 
     }
 
