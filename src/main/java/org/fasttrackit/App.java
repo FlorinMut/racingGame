@@ -36,7 +36,19 @@ public class App {
 
         engine = null; /** mai avem motorul, nu se sterge, dar nu il mai folosm */
 
+// Example of static variables unique for the whole application //
+Vehicle vehicle1 = new Vehicle();
+vehicle1.vehicleCount = 1;
 
+Vehicle vehicle2 = new Vehicle();
+vehicle2.vehicleCount = 2;
+
+
+Vehicle.vehicleCount = 3;
+
+System.out.println("Value from vehicle1: " + vehicle1.vehicleCount);
+System.out.println("Value from vehicle2: " + vehicle2.vehicleCount);
+System.out.println("Value from vehicle class: " + Vehicle.vehicleCount);
 
 
 
