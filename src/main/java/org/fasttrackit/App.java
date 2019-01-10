@@ -64,8 +64,16 @@ new AutoVehicle(new Engine());
 
         new UFO().accelerate(130,0.8);
 
+
+        //polymorphism (an object can take multiple forms)
         Vehicle ufo = new UFO();
+        //the type of the variable doesnt determine the object's behaviour
         ufo.accelerate(200,2);
+
+        //the type of the var determines what methods can be invoked
+        //we might need tpe casting (See below)
+
+        ((UFO) ufo).concealCheating();
 
 
     }
