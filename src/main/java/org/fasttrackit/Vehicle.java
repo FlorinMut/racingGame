@@ -13,6 +13,14 @@ public class Vehicle {
         vehicleCount++;
     }
 
+    protected Vehicle clone () {
+
+        Vehicle vehicle = new Vehicle();
+        //copy properties from current object or simply call this.clone
+        return vehicle;
+    }
+
+
     // public void - nu returneaza nimic
 
     public String getName() {
