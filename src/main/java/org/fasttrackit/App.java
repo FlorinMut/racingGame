@@ -8,7 +8,16 @@ import java.time.LocalDateTime;
  * Hello world!
  */
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) { // 7. revenim in APP ca sa o poate rula, doar de aici se ruleaza
+
+        //revenim in APP ca sa apelam metoda start !!!!!
+        //ca sa rulam doar asta, comentam restul prgamului selectam tot ctrl /
+        //sunt atent sa nu comentez si ultima paranteza care inhide ca atunci da error
+        //tot ce rulaza si arata programul, e doar aici in APP in args. de asta am rvenit aici ca sa rulez START method.
+        //reguli: sirurile au lungime fixe, treb sa specific la crearea sirului
+
+        Game game = new Game(); // 8. pt rulare. ACUM RULAM si imi va da valorile celor 2 trackuri., daca comenteze tot restul din APP imi va da doar cele 2 trackuri
+        game.start();
 
         Engine engine = new Engine();
         engine.manufacturer = "Renault";
@@ -23,6 +32,7 @@ public class App {
         car.running = true;
 
         System.out.println(car);
+
 
      //   System.out.println(car.getName());
 
@@ -46,7 +56,12 @@ vehicle1.vehicleCount = 1;
 
 Vehicle vehicle2 = new Vehicle();
 vehicle2.vehicleCount = 2;
-
+      /*  System.out.println(vehicle1.getColor());
+vehicle1.setColor("rosu");
+        System.out.println(vehicle1.getColor());
+        System.out.println("Am printat color rosie");
+        String test1 = vehicle1.getColor();
+        System.out.println("Am setat test 1");*/
 
 Vehicle.vehicleCount = 3;
 
@@ -75,6 +90,7 @@ new AutoVehicle(new Engine());
 
         ((UFO) ufo).concealCheating();
 
+        System.out.println(vehicle1.toString());
 
     }
 
