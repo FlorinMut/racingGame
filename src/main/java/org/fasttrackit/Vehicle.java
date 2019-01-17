@@ -8,6 +8,8 @@ public class Vehicle {
     private String name; //tin alt si scriu pe toate liniile deodata, am facut toate propr private -> eroare la vehicle fiindca nu le mai vede acolo, e private/
     private String color;
     private double mileage;
+    private double fuelLevel; //8. dupa pauza, la accelerare, sa pun si continutul cat combustibil mai avem
+    private double totalTravelledDistance; // ORDINE ELEMENTE clasa: 1 propor statice, 2 propr instanta, constructori, getteri si seteri si suprascrierea metodei tostring la final
 
     public Vehicle() {
         vehicleCount++;
@@ -47,6 +49,22 @@ public class Vehicle {
         this.mileage = mileage;
     }
 
+    public double getFuelLevel() {   // 9 get si set pt cele 2 variabile
+        return fuelLevel;
+    }
+
+    public void setFuelLevel(double fuelLevel) {
+        this.fuelLevel = fuelLevel;
+    }
+
+    public double getTotalTravelledDistance() {
+        return totalTravelledDistance;
+    }
+
+    public void setTotalTravelledDistance(double totalTravelledDistance) {
+        this.totalTravelledDistance = totalTravelledDistance;
+    }
+
     @Override
     public String toString() {
         return "Vehicle{" +
@@ -64,7 +82,21 @@ public class Vehicle {
 
         System.out.println("Traveled distance:" + traveledDistance);
 
-        return traveledDistance;
+        totalTravelledDistance = totalTravelledDistance + traveledDistance; // 10 calculam total travelled distance, adica dist totala va primi val lui de acum (acum e 0) + cat am parcurs pana cum traveled distance adica accelelrare ori timp
+
+        totalTravelledDistance += traveledDistance; // sames as ce e sus
+        System.out.println("Total travelled distance: " + totalTravelledDistance);
+
+
+        double spentFuel = traveledDistance * mileage / 100;   //11. calc nivel de combustibil ramas, dar mai intai calc cat am consumat
+
+        fuelLevel = fuelLevel - spentFuel;
+
+        fuelLevel -= spentFuel; // acelasi lucru ca mai sus, e precum val crt fuel level - spent fuel, nu mai facem o noua variabila ci o stocam in aceeasi
+        System.out.println("Remaining fuel: " + fuelLevel); //12. printam nivelul de combustibil
+
+
+        return traveledDistance; // nu mai putem returna si total traveled dostance, pt ca ptem returna o sg valoare si deja e asta aici de cursul trecut
 
     }
     // example of method overloading //
