@@ -39,6 +39,34 @@ public class Game {
 
         //apelam cele 2 meotda ca sa testam ce am facut pana cum. pt asta sus private void start
 
+        for (int i = 0; i < tracks.length; i++) {  //12. facem un clasic FOR loop, cat timp i < ca tracks length, adica 0 < 10, i devine 0 +1 =1, si tot asa.
+
+            // deci executam de 11 ori, i = 0 , i =1 etc pana e 11, pt ca lung sieului nu scade e tot 10, doar sa vedem cum merge FORul
+            // 13. compilam; la run imi da NULLPOINTER EXCEPTION, pt ca am populat doar 2 pozitii din sir, si nu toate 10, deci celelalate 8 au ramas NULL, nu e 0, e nimic.
+
+            // 14. deci introduc o cond ca sa nu ne dea NULL si nici sa nu completam de la 3 la 10 ca pot fi 1000
+
+            if (tracks[i] != null)  // daca e dif de null e facuta comanda SI DUPA IF NU PUNEM ; CA INSEAMNA CA AM TERMINAT IF-UL
+            { //! = adica diferit
+
+                // break; // cu acest break putem intrerupe forul daca am intalnit o conditie
+
+                System.out.println(tracks[i].getName());
+
+            }
+
+        }
+
+
+        //enhanced FOR sau "for-each" // e mai bun ca for clasic ca nu mai pot avea infinte loop, dar e mai limitta ca nu stiu la ce pozitie sunt.
+        for (Track track : tracks) {  // 15. facem enhancedFOR
+            if (track != null) {
+                System.out.println(track.getName());
+
+                //acum rulez, dar comentez for ul anterior, atentie sa comentez toate parantezele
+            }
+        }
+
 
     }
 
