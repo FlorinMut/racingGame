@@ -1,16 +1,53 @@
 package org.fasttrackit;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Game {
 
     private Track[] tracks = new Track[10]; // 3. declarare sir de obiecte; dupa crearea clasei Track si geteri, seteri, cream un sir de trackuri, va trebui sa ii zic lungimea de la incepit. Acum in memoria calc s-a creat un sir de 10 trackuri, la inceput sunt populate cu val null, val default pt obiecte
 
-    Vehicle firstCompetitor;
-    Vehicle secondCompetitor;
+    // 17. stergem variabilele first competitor si secondcompetitor si facem o lista de competitori
+
+    private List<Vehicle> competitors = new ArrayList<>(); // 18. ctrl click pe List deschide interfata list si mai avem ArrayList, acela e cu implement
+
+    // cu rosu click in el alt enter si java.util, ca sa fie iportul de mai sus daca nu il scriem de mana,
+    // vehicle intre diamond brackes
 
     public void start() {  // 6. apelam metoda
 
+        addCompetitors(3); // 21. apelam listele noi create, practic adaugam competitori, fara sa ii punem noi 1, 2 ca la inceput.
+        displayCompetitors();
+
         addTracks();//asta e apelarea. la declarare ii specificam toata forma si cream obiectele; la apelare doar o chem pe nume si specific lista de parametrii
         displayAvailableTracks();
+
+    }
+
+    private void addCompetitors(int competitorCount) { //19.
+
+        //facem un constructor ca sa cream competitori si vehicule, adica facem un for
+
+        for (int i = 0; i < competitorCount; i++) {
+
+            Vehicle vehicle = new Vehicle();
+            //vehicle properties will be populated when we learn to get user's input
+            competitors.add(vehicle);
+
+
+        }
+
+    }
+
+    // 20 incercam sa obtinem rand pe rand fiecare obiect din lista
+    private void displayCompetitors() {
+        System.out.println("Welcome! Today's competitors are: ");
+        for (int i = 0; i < competitors.size(); i++) {
+
+            System.out.println(competitors.get(i).getName());
+
+        }
+
 
     }
 
@@ -64,6 +101,9 @@ public class Game {
                 System.out.println(track.getName());
 
                 //acum rulez, dar comentez for ul anterior, atentie sa comentez toate parantezele
+
+                //break putem si la enhacnedFOR
+                //BREAK iese afara din toata bucla, 16. CONTINUE iee afara doar din acea iteriatie
             }
         }
 
