@@ -1,5 +1,6 @@
 package org.fasttrackit;
 
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -26,7 +27,79 @@ public class Game {
         displayAvailableTracks();
 
 
+        //8.11 apelam metoda
+
+        int numberFromUser = getTrackNumberFromUser();
+
+        Track track = tracks[numberFromUser - 1];
+        System.out.println("Selected track: "+ track.getName());
+
+
+        boolean noWinnerYet = true; //8.14
+
+        int competitorsWithoutFuel = 0;//8.16. o noua conditie
+
+
+        while(noWinnerYet && competitorsWithoutFuel < competitors.size()) { //8.14 si dupa && 8.16
+            for (Vehicle vehicle : competitors) {  //8.13 fiecare vehicul sa aiba ocazia sa accelereze 1 data
+
+                double speed = getAccelerationSpeedFromUser(); //am apelat metoda
+                vehicle.accelerate(speed); //acum rulam programul
+
+                if (vehicle.getFuelLevel() <= 0 ) {
+
+                    competitorsWithoutFuel++; //8.16
+
+                }
+
+                if(vehicle.getTotalTravelledDistance() >= track.getLength()) {  //8.15
+
+                    System.out.println("Congrats! The winner is " + vehicle.getName());
+
+                    noWinnerYet = false;
+                    break;
+
+                }
+
+            }
+
+        }
+
     }
+
+    //8.10 metoda sa
+    private int getTrackNumberFromUser(){
+        System.out.println("Give number:");
+        Scanner scanner = new Scanner(System.in);
+        try {
+            return scanner.nextInt();
+        } catch (InputMismatchException exception) {
+            System.out.println("Please re-enter");
+            return getTrackNumberFromUser();
+
+
+        }
+
+
+    }
+
+    //8.12.
+    private double getAccelerationSpeedFromUser() {
+
+        System.out.println("Please enter acceleration speed:");
+        Scanner scanner = new Scanner(System.in);
+        try {
+            return scanner.nextDouble();
+        } catch (InputMismatchException e) {
+
+            System.out.println("Please enter a valid decimal number:");
+            return getAccelerationSpeedFromUser();
+
+
+        }
+
+    }
+
 
     private void addCompetitors(int competitorCount) { //19.
 
@@ -61,19 +134,28 @@ public class Game {
 
     }
 
-    //8.1. metoda de atribuire nume, il cerem de la user
+    //8.1. metoda de atribuire nume, sa il ceara de la user
 
     private String getVehicleNameFromUser() {
 
         System.out.println("Please enter vehicle name");
         Scanner scanner = new Scanner(System.in); //il luam cel din java.util . Dam ctrl p intre paranteza sa vedem ce constructor putem pune sau ce asteapta daca am definit constructor inainte
-        //scannerul este unobiecut care poate urmari ce scrie userul de la tast //
+        //scannerul este un obiecut care poate urmari ce scrie userul de la tast //
         //scanner e o metoda care returneaza string, ce da ce a scris userul pana a dat Enter//
         String name = scanner.nextLine();
         System.out.println("Your vehicle name is: " + name);
         return name;
 
+    }
 
+
+    private String getTracksFromUser(){
+
+        System.out.println("Please enter tracks options");
+        Scanner scanner = new Scanner(System.in);
+        String trackOption = scanner.nextLine();
+        System.out.println("Your track option is: " + trackOption);
+        return trackOption;
 
     }
 
@@ -90,12 +172,18 @@ public class Game {
             System.out.println("Selected number of players: " + numberOfPlayers);
             return numberOfPlayers; // pana aici am declarat-o. CUm o folosesc? in metoda start
         } catch (InputMismatchException exception) {
-            throw new Exception("Integer required."); //8.8 da eraore uncecked exception - obliga programatorul sa trateze acea exceptie intrun fel sau altul, ori il prind in try catch sau anunt
+            //8,9, compentam aici ca rezolvam altfel jos //throw new Exception("Integer required."); //8.8 da eraore uncecked exception - obliga programatorul sa trateze acea exceptie intrun fel sau altul, ori il prind in try catch sau anunt
             //am ales prima optiune la eraore, nu cea cu try catch din noi, si imi da sus "throws eception" AICI
             //fac la fel in locurile unde am apelat metoda.la fel alt enter in eroare si aleg prima optiune.
             //comb taste sa ajung unde o metoda e apelata, ctrl apasat si apas pe numele metodei
 
             //Catch zice ce eroare primesc si Throw arunca mesajul pt eraore//
+
+            //8.9 dupa pauza, RECURSIVITATEA
+            System.out.println("Please enter a valid integer.");
+            return getCompetitorCountFromUser(); //o metoda ce se apeleaza pe ea insasi, e recursivitatea.
+            //8.10 testam, nu ne va mai da eraore cand bagam altcv de cat int, ci ne lasa sa mai incercam
+
         }
     }
 
