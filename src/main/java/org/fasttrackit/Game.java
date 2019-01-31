@@ -1,7 +1,10 @@
 package org.fasttrackit;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Game {
 
@@ -14,13 +17,14 @@ public class Game {
     // cu rosu click in el alt enter si java.util, ca sa fie iportul de mai sus daca nu il scriem de mana,
     // vehicle intre diamond brackes
 
-    public void start() {  // 6. apelam metoda
+    public void start() throws Exception {  // 6. apelam metoda
 
-        addCompetitors(3); // 21. apelam listele noi create, practic adaugam competitori, fara sa ii punem noi 1, 2 ca la inceput.
+        addCompetitors(getCompetitorCountFromUser()); //8.6. in loc de 3 ii dam metoda getcompetiro from user // 21. apelam listele noi create, practic adaugam competitori, fara sa ii punem noi 1, 2 ca la inceput.
         displayCompetitors();
 
         addTracks();//asta e apelarea. la declarare ii specificam toata forma si cream obiectele; la apelare doar o chem pe nume si specific lista de parametrii
         displayAvailableTracks();
+
 
     }
 
@@ -31,13 +35,71 @@ public class Game {
         for (int i = 0; i < competitorCount; i++) {
 
             Vehicle vehicle = new Vehicle();
+
+            //8.2. vehiculul isi seteaza ca nume ce returneaza metoda de jos, practic apelez metoda de mai jos
+            vehicle.setName(getVehicleNameFromUser()); //dam run si apoi imi va cere sa introduc de la tastatura 3 nume de masina
+
+
+          // 8.3.
+            vehicle.setMileage(
+                    ThreadLocalRandom.current().nextDouble(5,15) //daca il alegem din lista, face singur import, daca nu va trebui sa il alegem noi, cu alt p
+            );
+
+            //la ambele metode de mai sus, ii dam ca paramtreii metodei o alta metoda, in loc sa dau un string de mana, ii dau ce returneaza metoda getvehiclefromuser si cealalta
+
+            //8.4 acum testam cu run, dupa ce dau val unei masini, im va da un mileage 9.27...
+
+            System.out.println("Vehicle mileage: "+ vehicle.getMileage());
+
             //vehicle properties will be populated when we learn to get user's input
+
+            //pornim cursul 31 ian de aici, cum da input de la user
             competitors.add(vehicle);
 
 
         }
 
     }
+
+    //8.1. metoda de atribuire nume, il cerem de la user
+
+    private String getVehicleNameFromUser() {
+
+        System.out.println("Please enter vehicle name");
+        Scanner scanner = new Scanner(System.in); //il luam cel din java.util . Dam ctrl p intre paranteza sa vedem ce constructor putem pune sau ce asteapta daca am definit constructor inainte
+        //scannerul este unobiecut care poate urmari ce scrie userul de la tast //
+        //scanner e o metoda care returneaza string, ce da ce a scris userul pana a dat Enter//
+        String name = scanner.nextLine();
+        System.out.println("Your vehicle name is: " + name);
+        return name;
+
+
+
+    }
+
+
+    //8.5. o metoda care sa
+    private int getCompetitorCountFromUser() throws Exception { //AICI
+
+        System.out.println("Please enter number of players:");
+        Scanner scanner = new Scanner(System.in);  //cu systme in citim inputul de la tastatura
+        try {               //8.7. bagam acest try, care ii zice aplicatiei "incearca sa executi toate aceste instruct, iar in caz ca nu reusesti, in caz ca se arunca exceptie inputmismatch exceptiom, atunci.. fa altcv, arunca un new excption cu mesajul ... ""
+
+
+            int numberOfPlayers = scanner.nextInt(); //alt enter in paranteza sa imi dea variabila
+            System.out.println("Selected number of players: " + numberOfPlayers);
+            return numberOfPlayers; // pana aici am declarat-o. CUm o folosesc? in metoda start
+        } catch (InputMismatchException exception) {
+            throw new Exception("Integer required."); //8.8 da eraore uncecked exception - obliga programatorul sa trateze acea exceptie intrun fel sau altul, ori il prind in try catch sau anunt
+            //am ales prima optiune la eraore, nu cea cu try catch din noi, si imi da sus "throws eception" AICI
+            //fac la fel in locurile unde am apelat metoda.la fel alt enter in eroare si aleg prima optiune.
+            //comb taste sa ajung unde o metoda e apelata, ctrl apasat si apas pe numele metodei
+
+            //Catch zice ce eroare primesc si Throw arunca mesajul pt eraore//
+        }
+    }
+
+
 
     // 20 incercam sa obtinem rand pe rand fiecare obiect din lista
     private void displayCompetitors() {

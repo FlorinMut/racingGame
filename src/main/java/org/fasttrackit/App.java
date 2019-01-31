@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
  * Hello world!
  */
 public class App {
-    public static void main(String[] args) { // 7. revenim in APP ca sa o poate rula, doar de aici se ruleaza
+    public static void main(String[] args) throws Exception { // 7. revenim in APP ca sa o poate rula, doar de aici se ruleaza
 
         //revenim in APP ca sa apelam metoda start !!!!!
         //ca sa rulam doar asta, comentam restul prgamului selectam tot ctrl /
